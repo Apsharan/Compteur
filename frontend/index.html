@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Meter Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Water Meter Dashboard</h1>
+  <h2 id="status">⏳ Connexion en cours...</h2>
+
+  <!-- 🔐 Login Box -->
+  <div id="login-box">
+    <h2>Connexion</h2>
+    <input type="text" id="login-user" placeholder="Nom d'utilisateur" required />
+    <input type="password" id="login-pass" placeholder="Mot de passe" required />
+    <button onclick="customLogin()">Se connecter</button>
+    <p id="login-error" style="display: none; color: red;">❌ Identifiants incorrects</p>
+  </div>
+
+  <!-- Navigation buttons -->
+  <div id="navigation" style="display: none;">
+    <button onclick="showDashboard()">📊 Tableau de bord</button>
+    <button onclick="showGraph(); drawGraph()">📈 Consommation</button>
+  </div>
+
+  <!-- 🧾 Dashboard -->
+  <div id="dashboard" style="display: none;">
+    <p id="waterUsed">💧 Utilisé: -- L</p>
+    <p id="electrovalve">🔧 Valve: Inconnue</p>
+    <p id="valveState">Valve: --</p>
+
+    <button onclick="sendValveCommand('on')" id="valveOnBtn">🔓 Ouvrir la vanne</button>
+    <button onclick="sendValveCommand('off')" id="valveOffBtn">🔒 Fermer la vanne</button>
+
+    <br><br>
+    <button onclick="setMode('present')">🏠 Mode Présent</button>
+    <button onclick="setMode('absent')">🚪 Mode Absent</button>
+  </div>
+
+  <!-- 📈 Graph -->
+  <div id="graph" style="display: none;">
+    <canvas id="waterChart" width="400" height="200"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
